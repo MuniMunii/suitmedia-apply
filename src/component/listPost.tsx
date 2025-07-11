@@ -21,12 +21,7 @@ interface ListProps {
 export default function ListPost() {
   const [searchParams, setSearchParams] = useSearchParams();
   //   get value dari query
-const queryPagesArray = [10, 20, 50];
-const queryPageSizeParam = searchParams.get("pageSize");
-// fallback ketika page_size di luar 10,20,50
-const queryPageSize = queryPagesArray.includes(Number(queryPageSizeParam))
-  ? queryPageSizeParam
-  : "10";
+const queryPageSize = searchParams.get("pageSize");
   const queryPage = searchParams.get("page");
   const querySort = searchParams.get("sort");
   //   get value dari local
@@ -35,7 +30,7 @@ const queryPageSize = queryPagesArray.includes(Number(queryPageSizeParam))
   const getSortLocal = localStorage.getItem("sort");
   //   Check Validate page dari query dan local agar persistent dari reload dan ganti page
   const defaultPageSize = queryPageSize ?? getPageSizeLocal ?? "10";
-  const defaultPage = queryPage ?? getPageLocal;
+  const defaultPage = queryPage ?? getPageLocal??'1';
   const defaultSort = (querySort ?? getSortLocal ?? "-published_at") as
     | "published_at"
     | "-published_at";
