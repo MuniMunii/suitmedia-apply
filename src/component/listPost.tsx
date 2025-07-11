@@ -21,7 +21,12 @@ interface ListProps {
 export default function ListPost() {
   const [searchParams, setSearchParams] = useSearchParams();
   //   get value dari query
-  const queryPageSize = searchParams.get("pageSize");
+const queryPagesArray = [10, 20, 50];
+const queryPageSizeParam = searchParams.get("pageSize");
+// fallback ketika page_size di luar 10,20,50
+const queryPageSize = queryPagesArray.includes(Number(queryPageSizeParam))
+  ? queryPageSizeParam
+  : "10";
   const queryPage = searchParams.get("page");
   const querySort = searchParams.get("sort");
   //   get value dari local
