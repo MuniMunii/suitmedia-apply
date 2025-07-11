@@ -45,11 +45,16 @@ export default function ListPost() {
   const [sort, setSort] = useState<"published_at" | "-published_at">(
     defaultSort
   );
+  // state guard untuk query agar tidak ke reset saat pindah halaman
+  const [hasMounted, setHasMounted] = useState(false);
   //   useEffect reset page ketika ganti sort/size
 //   Reset ini bertujuan agar tidak ada bug pada saat berganti pagesize 10 ke 50
 // dikarenakan pagination akhir nya akan menjadi berbeda
+useEffect(()=>{setHasMounted(true)},[])
   useEffect(() => {
+    if(hasMounted){
     setShowPage(1);
+    }
   }, [showPageSize, sort]);
   //   useeffect localstorage
   useEffect(() => {
