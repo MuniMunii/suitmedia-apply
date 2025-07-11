@@ -21,7 +21,7 @@ interface ListProps {
 export default function ListPost() {
   const [searchParams, setSearchParams] = useSearchParams();
   //   get value dari query
-const queryPageSize = searchParams.get("pageSize");
+  const queryPageSize = searchParams.get("pageSize");
   const queryPage = searchParams.get("page");
   const querySort = searchParams.get("sort");
   //   get value dari local
