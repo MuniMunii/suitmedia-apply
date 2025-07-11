@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import bannerImage from "../assets/banner-doodle.jpg";
 export default function Banner() {
   const { scrollY } = useScroll();
   const [scrollDir, setScrollDir] = useState<"up" | "down">("up");
@@ -40,7 +39,7 @@ export default function Banner() {
           }}
           transition={{ type: "spring", stiffness: 80 }}
           className="size-full bg-center origin-bottom-left z-0"
-          src={bannerImage}
+          src={'https://res.cloudinary.com/duyurqj38/image/upload/v1752259655/banner-doodle_czkw8q.jpg'}
           alt="banner-image"
         ></motion.img>
       </div>

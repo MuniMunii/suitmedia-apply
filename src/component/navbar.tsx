@@ -46,7 +46,7 @@ export default function Navbar() {
       }}
       className="fixed top-0 left-0 bg-orange-500 w-full h-fit flex justify-between px-24 py-3 items-center z-[99]"
     >
-      <Link href="/">
+      <Link to="/">
         <img
           src={siteLogo}
           alt="site-logo"

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 export default function DummyPage() {
-  const { dummy } = useParams();
+  const { dummy } = useParams<{ dummy: string }>();
   return (
     <div className="size-full min-h-screen flex items-center justify-center">
       <div className="bg-amber-400 text-center h-32 p-5 rounded-md flex items-center justify-center flex-col">
