@@ -30,7 +30,7 @@ export default function ListPost() {
   const getSortLocal = localStorage.getItem("sort");
   //   Check Validate page dari query dan local agar persistent dari reload dan ganti page
   const defaultPageSize = queryPageSize ?? getPageSizeLocal ?? "10";
-  const defaultPage = queryPage ?? getPageLocal ?? "1";
+  const defaultPage = queryPage ?? getPageLocal;
   const defaultSort = (querySort ?? getSortLocal ?? "-published_at") as
     | "published_at"
     | "-published_at";
@@ -40,12 +40,14 @@ export default function ListPost() {
   const [showPageSize, setShowPageSize] = useState<number>(
     parseInt(defaultPageSize)
   );
-  const [showPage, setShowPage] = useState<number>(parseInt(defaultPage));
+  const [showPage, setShowPage] = useState<number>(parseInt(defaultPage!));
   const [paginationMeta, setPaginationMeta] = useState<any>();
   const [sort, setSort] = useState<"published_at" | "-published_at">(
     defaultSort
   );
   //   useEffect reset page ketika ganti sort/size
+//   Reset ini bertujuan agar tidak ada bug pada saat berganti pagesize 10 ke 50
+// dikarenakan pagination akhir nya akan menjadi berbeda
   useEffect(() => {
     setShowPage(1);
   }, [showPageSize, sort]);
@@ -69,7 +71,7 @@ export default function ListPost() {
     });
     const fetchData = async () => {
       const data = await fetch(
-        `https://suitmedia-backend.suitdev.com/api/ideas?page[number]=${showPage}&page[size]=20&append[]=small_image&append[]=medium_image&sort=${sort}`,
+        `https://suitmedia-backend.suitdev.com/api/ideas?page[number]=${showPage}&page[size]=${showPageSize}&append[]=small_image&append[]=medium_image&sort=${sort}`,
         {
           method: "get",
           headers: {
